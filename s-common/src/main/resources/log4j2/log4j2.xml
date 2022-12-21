@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--日志级别以及优先级排序: OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL -->
+<!--Configuration后面的status，这个用于设置log4j2自身内部的信息输出，可以不设置，当设置成trace时，你会看到log4j2内部各种详细输出-->
+<!--monitorInterval：Log4j能够自动检测修改配置 文件和重新配置本身，设置间隔秒数-->
+<Configuration status="info" monitorInterval="500">
+    <!--定义日志储存文件目录-->
+    <properties>
+        <property name="LOG_HOME">logs</property>
+    </properties>
+    <Appenders>
+        <!--控制台输出所有日志-->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %highlight{%-5level} %style{[%t]}{magenta} %style{%c{1.}.%M}{cyan}:  %msg%xEx%n" />
+<!--            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %highlight{%-5level} %style{%c{1.}.%M}{cyan}:  %msg%xEx%n" />-->
+        </Console>
+        <!--文件：Info级别日志输出-->
+        <RollingRandomAccessFile name="InfoFile"
+                                 fileName="${LOG_HOME}/info/${sys:log4fFile}.log"
+                                 filePattern="${LOG_HOME}/${sys:log4fFile}-%d{yyyy-MM-dd}-info.log">
+            <Filters>
+                <ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%file:%line] - %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+            </Policies>
+            <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件，这里设置了20 -->
+            <DefaultRolloverStrategy max="20" />
+        </RollingRandomAccessFile>
+        <!--文件：warn级别日志输出-->
+        <RollingRandomAccessFile name="WarnFile"
+                                 fileName="${LOG_HOME}/warn/${sys:log4fFile}.log"
+                                 filePattern="${LOG_HOME}/${sys:log4fFile}-%d{yyyy-MM-dd}-warn.log">
+            <Filters>
+                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL"/>
+                <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level  [%file:%line] - %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20" />
+        </RollingRandomAccessFile>
+
+        <!--文件：Error级别日志输出-->
+        <RollingRandomAccessFile name="ErrorFile"
+                                 fileName="${LOG_HOME}/error/${sys:log4fFile}.log"
+                                 filePattern="${LOG_HOME}/${sys:log4fFile}-%d{yyyy-MM-dd}-error.log">
+            <Filters>
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%file:%line] - %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20" />
+        </RollingRandomAccessFile>
+
+    </Appenders>
+
+
+    <Loggers>
+        <!--过滤掉spring的一些无用的DEBUG信息-->
+        <logger name="org.springframework" level="INFO"></logger>
+
+        <AsyncLogger name="com.ezeyc.*" level="trace" additivity="false">
+            <appender-ref ref="InfoFile"/>
+            <appender-ref ref="Console"/>
+        </AsyncLogger>
+        <AsyncLogger name="com.ezeyc." level="trace" additivity="false">
+            <appender-ref ref="WarnFile"/>
+            <appender-ref ref="Console"/>
+        </AsyncLogger>
+        <AsyncLogger name="com.ezeyc.*" level="trace" additivity="false">
+            <appender-ref ref="ErrorFile"/>
+            <appender-ref ref="Console"/>
+        </AsyncLogger>
+        <AsyncRoot level="info" includeLocation="true">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="InfoFile" />
+            <AppenderRef ref="WarnFile" />
+            <AppenderRef ref="ErrorFile" />
+        </AsyncRoot>
+<!--        <Root level="Debug">-->
+<!--&lt;!&ndash;            <AppenderRef ref="Console" />&ndash;&gt;-->
+<!--        </Root>-->
+    </Loggers>
+
+</Configuration>

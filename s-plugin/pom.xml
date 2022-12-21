@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>cn.ezeyc</groupId>
+        <artifactId>s-base</artifactId>
+        <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <groupId>cn.ezeyc</groupId>
+    <artifactId>s-plugin</artifactId>
+    <version>1.0</version>
+    <name>s-plugin</name>
+    <description>springboot 基础 插件服务</description>
+
+    <packaging>pom</packaging>
+
+
+    <properties>
+        <tx-msg.version>3.1.356</tx-msg.version>
+    </properties>
+    <modules>
+        <module>s-plugin-ali</module>
+        <module>s-plugin-other</module>
+        <module>s-plugin-tx</module>
+    </modules>
+
+</project>

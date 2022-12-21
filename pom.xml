@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>cn.ezeyc</groupId>
+    <artifactId>s-base</artifactId>
+    <version>1.0</version>
+    <name>s-base</name>
+    <packaging>pom</packaging>
+    <description>易择云创快速开发平台</description>
+    <properties>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--base-->
+        <pdf.version>2.0.26</pdf.version>
+        <spring-boot.version>2.7.2</spring-boot.version>
+        <spring-could.version>2021.0.3</spring-could.version>
+        <hikariCP.version>5.0.1</hikariCP.version>
+        <mysql.version>8.0.29</mysql.version>
+        <freemarker.version>2.3.31</freemarker.version>
+        <log4j2.version>2.18.0</log4j2.version>
+        <log4j2.aync.version>3.4.4</log4j2.aync.version>
+        <license.version>1.33</license.version>
+        <nacos.version>2021.1</nacos.version>
+        <jwt.version>3.19.2</jwt.version>
+        <oshi.version>6.1.6</oshi.version>
+        <redisson.version>3.17.3</redisson.version>
+        <jedis.version>3.8.0</jedis.version>
+<!--        <jedis.version>4.2.3</jedis.version>-->
+        <ooxml.version>5.2.2</ooxml.version>
+        <snakeyaml.version>1.30</snakeyaml.version>
+        <reflections.version>0.10.2</reflections.version>
+        <springdoc.verion>1.6.9</springdoc.verion>
+
+        <!--common-->
+        <common.verson>3.12.0</common.verson>
+        <fastjson.version>1.2.78</fastjson.version>
+        <common.codec.version>1.15</common.codec.version>
+
+        <!--ali-->
+        <bcprov.version>1.70</bcprov.version>
+        <commonlog.version>1.2</commonlog.version>
+    </properties>
+
+    <modules>
+        <module>s-common</module>
+        <module>s-core</module>
+        <module>s-xnc-plugin</module>
+        <module>s-plugin</module>
+    </modules>
+    <dependencies>
+        <!--自定义配置-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-could.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+    <repositories>
+        <repository>
+            <id>tencent</id>
+            <name>tencent maven</name>
+            <url>https://mirrors.cloud.tencent.com/nexus/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>repo1</id>
+            <name>repo1 maven</name>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+    </repositories>
+    <!--  需要发布二方包 则打开下列的配置-->
+        <distributionManagement>
+            <repository>
+                <id>ck</id>
+                <url>https://ck.ezeyc.cn/repository/mvn/</url>
+            </repository>
+        </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <skip>true</skip>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

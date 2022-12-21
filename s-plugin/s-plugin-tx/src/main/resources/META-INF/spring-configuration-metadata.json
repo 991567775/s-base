@@ -1,0 +1,50 @@
+{
+  "groups": [
+    {
+      "sourceType": "cn.ezeyc.edptxplug.config.WX",
+      "name": "edp.wx",
+      "type": "cn.ezeyc.edptxplug.config.WX"
+    },
+    {
+      "sourceType": "cn.ezeyc.edptxplug.config.Msg",
+      "name": "edp.tx.msg",
+      "type": "cn.ezeyc.edptxplug.config.Msg"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "cn.ezeyc.edptxplug.config.WX",
+      "name": "edp.wx.mp",
+      "type": "java.util.List<cn.ezeyc.edptxplug.config.wxMp>",
+      "description": "微信小程序集合."
+    },
+    {
+      "sourceType": "cn.ezeyc.edptxplug.config.WX",
+      "name": "edp.wx.pub",
+      "type": "java.util.List<cn.ezeyc.edptxplug.config.wxPub>",
+      "description": "微信公众号集合."
+    },
+
+    {
+      "sourceType": "cn.ezeyc.edptxplug.config.Msg",
+      "name": "edp.tx.msg.secretId",
+      "type": "java.lang.String",
+      "description": "腾讯短信授权id."
+    },
+    {
+      "sourceType": "cn.ezeyc.edptxplug.config.Msg",
+      "name": "edp.tx.msg.secretKey",
+      "type": "java.lang.String",
+      "description": "腾讯短信授权密钥."
+    },
+    {
+      "sourceType": "cn.ezeyc.edptxplug.config.Msg",
+      "name": "edp.tx.msg.sdkApp",
+      "type": "java.util.List<cn.ezeyc.edptxplug.config.MsgApp>",
+      "description": "应用短信模板"
+    }
+
+
+
+  ]
+}

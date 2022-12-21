@@ -1,0 +1,7 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  cn.ezeyc.edptxplug.start.RegistryFieldProcessor,\
+  cn.ezeyc.edptxplug.config.Msg ,\
+  cn.ezeyc.edptxplug.config.WX
+
+
+

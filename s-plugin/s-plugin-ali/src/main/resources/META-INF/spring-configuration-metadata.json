@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "sourceType": "cn.ezeyc.edpaliplug.config.Ali",
+      "name": "edp.ali",
+      "type": "cn.ezeyc.edpaliplug.config.Ali"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "cn.ezeyc.edpaliplug.config.Ali",
+      "name": "edp.ali.mp",
+      "type": "java.util.List<cn.ezeyc.edpaliplug.config.AliMp>",
+      "description": "支付宝小程序集合."
+    }
+  ]
+}

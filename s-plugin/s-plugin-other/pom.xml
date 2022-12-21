@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>cn.ezeyc</groupId>
+        <artifactId>s-plugin</artifactId>
+        <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <groupId>cn.ezeyc</groupId>
+    <artifactId>s-plugin-other</artifactId>
+    <version>1.0</version>
+    <name>s-plugin-other</name>
+    <description>s-plugin-other</description>
+    <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.ezeyc</groupId>
+            <artifactId>s-common</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+
+
+    </dependencies>
+</project>

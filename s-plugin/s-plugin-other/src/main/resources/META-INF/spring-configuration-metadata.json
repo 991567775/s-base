@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "sourceType": "cn.ezeyc.edpotherplug.config.Br",
+      "name": "edp.br",
+      "type": "cn.ezeyc.edpotherplug.config.Br"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "cn.ezeyc.edpotherplug.config.Br",
+      "name": "edp.br.app",
+      "type": "java.util.List<cn.ezeyc.edpotherplug.config.BrApp>",
+      "description": "账号集合."
+    }
+  ]
+}

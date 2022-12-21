@@ -1,0 +1,157 @@
+{
+  "groups": [
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Config",
+      "name": "edp.config",
+      "type": "cn.ezeyc.edpbase.config.Config"
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Db",
+      "name": "edp.db",
+      "type": "cn.ezeyc.edpbase.config.Db"
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Redis",
+      "name": "edp.redis",
+      "type": "cn.ezeyc.edpbase.config.Redis"
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Log",
+      "name": "edp.log",
+      "type": "cn.ezeyc.edpbase.config.Log"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Config",
+      "name": "edp.config.security",
+      "type": "java.lang.Boolean",
+      "description": "是否开启权限验证.",
+      "defaultValue": true
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Config",
+      "name": "edp.config.scan",
+      "type": "java.lang.String",
+      "description": "包路径"
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Config",
+      "name": "edp.config.ignore",
+      "type": "java.util.List<java.lang.String>",
+      "description": "免token验证地址"
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Config",
+      "name": "edp.config.uploadPath",
+      "type": "java.lang.String",
+      "description": "附件上传路径."
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Config",
+      "name": "edp.config.dataAuth",
+      "type": "java.lang.Boolean",
+      "description": "数据权限过滤.",
+      "defaultValue": true
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Config",
+      "name": "edp.config.uploadWinPath",
+      "type": "java.lang.String",
+      "description": "window环境附件上传路径."
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Config",
+      "name": "edp.config.cache",
+      "type": "java.lang.Boolean",
+      "description": "是否关闭缓存.",
+      "defaultValue": true
+    } ,{
+      "sourceType": "cn.ezeyc.edpbase.config.Config",
+      "name": "edp.config.remove",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "是否物理删除"
+    } ,
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Config",
+      "name": "edp.config.licensePath",
+      "type": "java.lang.String",
+      "description": "证书路径"
+    } ,
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Log",
+      "name": "edp.log.enable",
+      "type": "java.lang.Boolean",
+      "description": "是否记录用户操作日志到数据库."
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Log",
+      "name": "edp.log.service",
+      "type": "java.lang.String",
+      "description": "日志所在服务名称."
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Log",
+      "name": "edp.log.url",
+      "type": "java.lang.String",
+      "description": "日志所在服务的请求地址."
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Db",
+      "name": "edp.db.className",
+      "type": "java.lang.String",
+      "defaultValue":"com.mysql.cj.jdbc.Driver"
+
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Db",
+      "name": "edp.db.url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Db",
+      "name": "edp.db.user",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Db",
+      "name": "edp.db.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Db",
+      "name": "edp.db.showSql",
+      "description": "打印sql语句",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Db",
+      "name": "edp.db.showMonitor",
+      "description": "打印连接池监控信息",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Redis",
+      "name": "edp.redis.ip",
+      "type": "java.lang.String",
+      "defaultValue":"127.0.0.1"
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Redis",
+      "name": "edp.redis.port",
+      "type": "java.lang.Integer",
+      "defaultValue":6379
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Redis",
+      "name": "edp.redis.pwd",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "cn.ezeyc.edpbase.config.Redis",
+      "name": "edp.redis.db",
+      "type": "java.lang.Integer"
+    }
+  ]
+}

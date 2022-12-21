@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>s-plugin</artifactId>
+        <groupId>cn.ezeyc</groupId>
+        <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>cn.ezeyc</groupId>
+    <artifactId>s-plugin-tx</artifactId>
+    <version>1.0</version>
+    <name>s-plugin-tx</name>
+    <description>腾讯插件</description>
+    <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.ezeyc</groupId>
+            <artifactId>s-common</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <!--腾讯云短信-->
+        <dependency>
+            <groupId>com.tencentcloudapi</groupId>
+            <artifactId>tencentcloud-sdk-java</artifactId>
+            <version>${tx-msg.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
