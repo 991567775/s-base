@@ -1,1 +1,9 @@
 
+/s-core/target/
+/s-plugin/target/
+/target/
+/s-xnc-plugin/target/
+/s-plugin/s-plugin-tx/target/
+/s-plugin/s-plugin-other/target/
+/s-plugin/s-plugin-ali/target/
+/s-common/target/
