@@ -88,6 +88,10 @@
             <name>repo1 maven</name>
             <url>https://repo1.maven.org/maven2/</url>
         </repository>
+        <repository>
+            <id>ck</id>
+            <url>https://ck.ezeyc.cn/repository/mvn/</url>
+        </repository>
     </repositories>
     <!--  需要发布二方包 则打开下列的配置-->
         <distributionManagement>
