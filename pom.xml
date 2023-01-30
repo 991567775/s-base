@@ -18,27 +18,29 @@
         <spring-boot.version>2.7.2</spring-boot.version>
         <spring-could.version>2021.0.3</spring-could.version>
         <hikariCP.version>5.0.1</hikariCP.version>
-        <mysql.version>8.0.29</mysql.version>
-        <freemarker.version>2.3.31</freemarker.version>
+        <mysql.version>8.0.32</mysql.version>
+        <freemarker.version>2.3.32</freemarker.version>
         <log4j2.version>2.18.0</log4j2.version>
         <log4j2.aync.version>3.4.4</log4j2.aync.version>
         <license.version>1.33</license.version>
         <nacos.version>2021.1</nacos.version>
-        <jwt.version>3.19.2</jwt.version>
-        <oshi.version>6.1.6</oshi.version>
-        <redisson.version>3.17.3</redisson.version>
+        <jwt.version>4.2.2</jwt.version>
+        <oshi.version>6.4.0</oshi.version>
+        <redisson.version>3.19.1</redisson.version>
         <jedis.version>3.8.0</jedis.version>
-<!--        <jedis.version>4.2.3</jedis.version>-->
-        <ooxml.version>5.2.2</ooxml.version>
-        <snakeyaml.version>1.30</snakeyaml.version>
+<!--        <jedis.version>4.3.1</jedis.version>-->
+        <ooxml.version>5.2.3</ooxml.version>
+        <snakeyaml.version>1.33</snakeyaml.version>
         <reflections.version>0.10.2</reflections.version>
-        <springdoc.verion>1.6.9</springdoc.verion>
-
+        <torna.version>1.0.15</torna.version>
+        <qdox.version>2.0.3</qdox.version>
+        <okio.version>3.3.0</okio.version>
         <!--common-->
         <common.verson>3.12.0</common.verson>
-        <fastjson.version>1.2.78</fastjson.version>
+        <fastjson.version>2.0.23</fastjson.version>
         <common.codec.version>1.15</common.codec.version>
-
+        <servet.version>4.0.1</servet.version>
+        <lombok.version>1.18.24</lombok.version>
         <!--ali-->
         <bcprov.version>1.70</bcprov.version>
         <commonlog.version>1.2</commonlog.version>

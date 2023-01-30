@@ -1,11 +1,10 @@
 package ${package}.service.impl;
-import dao.annotation.cn.ezeyc.edpcommon.cache;
-import dao.annotation.cn.ezeyc.edpcommon.clearCache;
-import framework.annotation.cn.ezeyc.edpcommon.autowired;
-import pojo.cn.ezeyc.edpcommon.Page;
-import session.pojo.cn.ezeyc.edpbase.Query;
-import framework.annotation.cn.ezeyc.edpcommon.tx;
-
+import cn.ezeyc.edpbase.pojo.session.Query;
+import cn.ezeyc.edpcommon.annotation.framework.autowired;
+import cn.ezeyc.edpcommon.pojo.Page;
+import cn.ezeyc.edpcommon.annotation.dao.cache;
+import cn.ezeyc.edpcommon.annotation.dao.clearCache;
+import cn.ezeyc.edpcommon.annotation.framework.tx;
 import java.util.List;
 import ${package}.model.${tableName};
 import ${package}.dao.${tableName}Dao;

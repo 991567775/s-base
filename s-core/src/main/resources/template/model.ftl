@@ -1,8 +1,9 @@
 package ${package}.model;
-
-import dao.annotation.cn.ezeyc.edpcommon.col;
-import dao.annotation.cn.ezeyc.edpcommon.pojo;
-import pojo.cn.ezeyc.edpcommon.ModelBase;
+import lombok.Getter;
+import lombok.Setter;
+import cn.ezeyc.edpcommon.annotation.dao.col;
+import cn.ezeyc.edpcommon.annotation.dao.pojo;
+import cn.ezeyc.edpcommon.pojo.ModelBase;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -13,6 +14,8 @@ import java.math.BigDecimal;
 * @author ${author}
 * @date ${date}
 */
+@Getter
+@Setter
 @pojo("${table_name}")
 public class ${tableName} extends ModelBase<${tableName}> {
 
@@ -91,81 +94,80 @@ public class ${tableName} extends ModelBase<${tableName}> {
     </#if>
     </#list>
 </#if>
-
-<#if column?exists>
-    <#list column as model>
-    <#if (model.columnType = 'varchar'||model.columnType = 'VARCHAR'  || model.columnType = 'text'|| model.columnType = 'TEXT')>
-    public String get${model.changeColumnName?cap_first}() {
-        return this.${model.changeColumnName};
-    }
-    public void set${model.changeColumnName?cap_first}(String ${model.changeColumnName}) {
-        this.${model.changeColumnName} = ${model.changeColumnName};
-    }
-    </#if>
-    <#if model.columnType = 'decimal'||model.columnType = 'DECIMAL' >
-    public BigDecimal get${model.changeColumnName?cap_first}() {
-        return this.${model.changeColumnName};
-    }
-    public void set${model.changeColumnName?cap_first}(BigDecimal ${model.changeColumnName}) {
-        this.${model.changeColumnName} = ${model.changeColumnName};
-    }
-    </#if>
-    <#if model.columnType = 'timestamp'||model.columnType = 'TIMESTAMP'|| model.columnType = 'datetime'||model.columnType = 'DATETIME' >
-    public LocalDateTime get${model.changeColumnName?cap_first}() {
-        return this.${model.changeColumnName};
-    }
-    public void set${model.changeColumnName?cap_first}(LocalDateTime ${model.changeColumnName}) {
-        this.${model.changeColumnName} = ${model.changeColumnName};
-    }
-    </#if>
-    <#if model.columnType = 'date'||model.columnType = 'DATE'>
-    public LocalDate get${model.changeColumnName?cap_first}() {
-        return this.${model.changeColumnName};
-    }
-    public void set${model.changeColumnName?cap_first}(LocalDate ${model.changeColumnName}) {
-        this.${model.changeColumnName} = ${model.changeColumnName};
-    }
-    </#if>
-    <#if model.columnType = 'time'||model.columnType = 'TIME'>
-    public LocalTime get${model.changeColumnName?cap_first}() {
-        return this.${model.changeColumnName};
-    }
-    public void set${model.changeColumnName?cap_first}(LocalTime ${model.changeColumnName}) {
-        this.${model.changeColumnName} = ${model.changeColumnName};
-    }
-    </#if>
-    <#if model.columnType = 'bigint'||model.columnType = 'BIGINT' >
-    public Long get${model.changeColumnName?cap_first}() {
-        return this.${model.changeColumnName};
-    }
-    public void set${model.changeColumnName?cap_first}(Long ${model.changeColumnName}) {
-        this.${model.changeColumnName} = ${model.changeColumnName};
-    }
-    </#if>
-    <#if model.columnType = 'int'||model.columnType = 'INT' >
-    public Integer get${model.changeColumnName?cap_first}() {
-        return this.${model.changeColumnName};
-    }
-    public void set${model.changeColumnName?cap_first}(Integer ${model.changeColumnName}) {
-        this.${model.changeColumnName} = ${model.changeColumnName};
-    }
-    </#if>
-    <#if model.columnType = 'smallint'||model.columnType = 'SMALLINT' >
-     public Integer get${model.changeColumnName?cap_first}() {
-        return this.${model.changeColumnName};
-    }
-    public void set${model.changeColumnName?cap_first}(Integer ${model.changeColumnName}) {
-        this.${model.changeColumnName} = ${model.changeColumnName};
-    }
-    </#if>
-    <#if model.columnType = 'tinyint'||model.columnType = 'TINYINT' >
-    public Boolean get${model.changeColumnName?cap_first}() {
-        return this.${model.changeColumnName};
-    }
-    public void set${model.changeColumnName?cap_first}(Boolean ${model.changeColumnName}) {
-        this.${model.changeColumnName} = ${model.changeColumnName};
-    }
-    </#if>
-    </#list>
-</#if>
+<#--<#if column?exists>-->
+<#--    <#list column as model>-->
+<#--    <#if (model.columnType = 'varchar'||model.columnType = 'VARCHAR'  || model.columnType = 'text'|| model.columnType = 'TEXT')>-->
+<#--    public String get${model.changeColumnName?cap_first}() {-->
+<#--        return this.${model.changeColumnName};-->
+<#--    }-->
+<#--    public void set${model.changeColumnName?cap_first}(String ${model.changeColumnName}) {-->
+<#--        this.${model.changeColumnName} = ${model.changeColumnName};-->
+<#--    }-->
+<#--    </#if>-->
+<#--    <#if model.columnType = 'decimal'||model.columnType = 'DECIMAL' >-->
+<#--    public BigDecimal get${model.changeColumnName?cap_first}() {-->
+<#--        return this.${model.changeColumnName};-->
+<#--    }-->
+<#--    public void set${model.changeColumnName?cap_first}(BigDecimal ${model.changeColumnName}) {-->
+<#--        this.${model.changeColumnName} = ${model.changeColumnName};-->
+<#--    }-->
+<#--    </#if>-->
+<#--    <#if model.columnType = 'timestamp'||model.columnType = 'TIMESTAMP'|| model.columnType = 'datetime'||model.columnType = 'DATETIME' >-->
+<#--    public LocalDateTime get${model.changeColumnName?cap_first}() {-->
+<#--        return this.${model.changeColumnName};-->
+<#--    }-->
+<#--    public void set${model.changeColumnName?cap_first}(LocalDateTime ${model.changeColumnName}) {-->
+<#--        this.${model.changeColumnName} = ${model.changeColumnName};-->
+<#--    }-->
+<#--    </#if>-->
+<#--    <#if model.columnType = 'date'||model.columnType = 'DATE'>-->
+<#--    public LocalDate get${model.changeColumnName?cap_first}() {-->
+<#--        return this.${model.changeColumnName};-->
+<#--    }-->
+<#--    public void set${model.changeColumnName?cap_first}(LocalDate ${model.changeColumnName}) {-->
+<#--        this.${model.changeColumnName} = ${model.changeColumnName};-->
+<#--    }-->
+<#--    </#if>-->
+<#--    <#if model.columnType = 'time'||model.columnType = 'TIME'>-->
+<#--    public LocalTime get${model.changeColumnName?cap_first}() {-->
+<#--        return this.${model.changeColumnName};-->
+<#--    }-->
+<#--    public void set${model.changeColumnName?cap_first}(LocalTime ${model.changeColumnName}) {-->
+<#--        this.${model.changeColumnName} = ${model.changeColumnName};-->
+<#--    }-->
+<#--    </#if>-->
+<#--    <#if model.columnType = 'bigint'||model.columnType = 'BIGINT' >-->
+<#--    public Long get${model.changeColumnName?cap_first}() {-->
+<#--        return this.${model.changeColumnName};-->
+<#--    }-->
+<#--    public void set${model.changeColumnName?cap_first}(Long ${model.changeColumnName}) {-->
+<#--        this.${model.changeColumnName} = ${model.changeColumnName};-->
+<#--    }-->
+<#--    </#if>-->
+<#--    <#if model.columnType = 'int'||model.columnType = 'INT' >-->
+<#--    public Integer get${model.changeColumnName?cap_first}() {-->
+<#--        return this.${model.changeColumnName};-->
+<#--    }-->
+<#--    public void set${model.changeColumnName?cap_first}(Integer ${model.changeColumnName}) {-->
+<#--        this.${model.changeColumnName} = ${model.changeColumnName};-->
+<#--    }-->
+<#--    </#if>-->
+<#--    <#if model.columnType = 'smallint'||model.columnType = 'SMALLINT' >-->
+<#--     public Integer get${model.changeColumnName?cap_first}() {-->
+<#--        return this.${model.changeColumnName};-->
+<#--    }-->
+<#--    public void set${model.changeColumnName?cap_first}(Integer ${model.changeColumnName}) {-->
+<#--        this.${model.changeColumnName} = ${model.changeColumnName};-->
+<#--    }-->
+<#--    </#if>-->
+<#--    <#if model.columnType = 'tinyint'||model.columnType = 'TINYINT' >-->
+<#--    public Boolean get${model.changeColumnName?cap_first}() {-->
+<#--        return this.${model.changeColumnName};-->
+<#--    }-->
+<#--    public void set${model.changeColumnName?cap_first}(Boolean ${model.changeColumnName}) {-->
+<#--        this.${model.changeColumnName} = ${model.changeColumnName};-->
+<#--    }-->
+<#--    </#if>-->
+<#--    </#list>-->
+<#--</#if>-->
 }

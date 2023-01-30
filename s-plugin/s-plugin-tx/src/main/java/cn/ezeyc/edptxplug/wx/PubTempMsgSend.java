@@ -1,11 +1,11 @@
 package cn.ezeyc.edptxplug.wx;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import cn.ezeyc.edpcommon.util.Http;
 import cn.ezeyc.edptxplug.config.wxPub;
 import cn.ezeyc.edptxplug.pojo.wxSendMsg;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONArray;
+import com.alibaba.fastjson2.JSONObject;
 
 
 import java.util.Map;
@@ -45,7 +45,7 @@ public class PubTempMsgSend {
         String result = Http.sendGet("https://api.weixin.qq.com/cgi-bin/user/get","access_token="+ wxSendMsg.getAccessToken()+"&next_openid=");
         Map map =  JSON.parseObject(result, Map.class);
         if(map.get("data")!=null){
-            return  ((JSONArray)((JSONObject)map.get("data")).get("openid")).toArray(new String[]{});
+            return ((JSONArray)((JSONObject)map.get("data")).get("openid")).toArray(new String[]{});
         }else{
             throw new RuntimeException(map.get("errmsg").toString());
         }

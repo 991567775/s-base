@@ -17,9 +17,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * ResultSetDao：
@@ -29,7 +27,7 @@ import java.util.List;
  */
 @configuration
 public class SetResult<T> {
-    private Logger logger= LoggerFactory.getLogger(SetResult.class);
+    private final Logger logger= LoggerFactory.getLogger(SetResult.class);
 
     public <T> Object toResult(ResultSet rs,Class returnType,Class model) {
         if (rs != null) {
@@ -42,6 +40,15 @@ public class SetResult<T> {
                     //list中为pojo实体
                     if (model.isAnnotationPresent(pojo.class)) {
                         list= (List) setPojo(rsmd,rs,model,list);
+                    }else if(model ==Map.class ){
+                        Map m=null;
+                        while (rs.next()) {
+                            m=new HashMap();
+                            for (int x = 0; x < rsmd.getColumnCount(); x++) {
+                                m.put(rsmd.getColumnLabel(x+1), rs.getObject(x + 1));
+                            }
+                            list.add( m);
+                        }
                     } else {
                         //list中为其他类型：基本类型、数组等
                         while (rs.next()) {
@@ -55,6 +62,16 @@ public class SetResult<T> {
                     //返回类型为pojo实体
                 } else if (returnType == ModelBase.class ||returnType.isAnnotationPresent(pojo.class)) {
                     return setPojo(rsmd,rs,model,null);
+                   //map类型
+                }else if(returnType ==Map.class ){
+                    Map m=null;
+                    while (rs.next()) {
+                        m=new HashMap();
+                        for (int x = 0; x < rsmd.getColumnCount(); x++) {
+                            m.put(rsmd.getColumnLabel(x+1), rs.getObject(x + 1));
+                        }
+                    }
+                    return  m;
                     //数组类型
                 }else if(returnType.isArray()){
                     List  list=new ArrayList();
@@ -139,10 +156,7 @@ public class SetResult<T> {
                 list.add(bean);
             }
         }
-        if(list!=null){
-            return list;
-        }
-        return  null;
+        return list;
     }
     /**
      * sql查询pojo实体赋值
@@ -153,7 +167,7 @@ public class SetResult<T> {
      * @throws IllegalAccessException
      */
     private static void setField(Object bean,Field field, String columnName,Object columnValue) throws IllegalAccessException {
-        if ( field.getName().toLowerCase().equals(StringUtil.lineToHump(columnName).toLowerCase()) ) {
+        if ( field.getName().equalsIgnoreCase(StringUtil.lineToHump(columnName)) ) {
                 reflect.setNormal(field,field.getType(),bean,columnValue);
         }
     }

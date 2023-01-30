@@ -1,7 +1,8 @@
 package cn.ezeyc.edpcommon.util;
 
-import com.alibaba.fastjson.JSONObject;
 import cn.ezeyc.edpcommon.pojo.ResultBody;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
@@ -11,6 +12,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
@@ -165,7 +167,7 @@ public class Http {
             out.flush();
 
             // 读取数据
-            br=new BufferedReader(new InputStreamReader(conn.getInputStream(),"utf-8"));
+            br=new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8));
             String line=null;
             while (null != (line=br.readLine())){
                 result.append(line);
@@ -215,12 +217,12 @@ public class Http {
             connection.setRequestMethod(requestMethod);
             if (null != output) {
                 OutputStream outputStream = connection.getOutputStream();
-                outputStream.write(output.getBytes("UTF-8"));
+                outputStream.write(output.getBytes(StandardCharsets.UTF_8));
                 outputStream.close();
             }
             // 从输入流读取返回内容
             InputStream inputStream = connection.getInputStream();
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             String str = null;
             StringBuffer buffer = new StringBuffer();
@@ -246,7 +248,7 @@ public class Http {
         response.setContentType("text/plain;charset=UTF-8");
         try {
             writer = response.getWriter();
-            writer.print(JSONObject.toJSON(resultBody));
+            writer.print(JSON.toJSON(resultBody));
         } catch (IOException e) {
         } finally {
             if (writer != null){
@@ -277,12 +279,10 @@ public class Http {
 
         public void checkServerTrusted(java.security.cert.X509Certificate[] certs, String authType)
                 throws java.security.cert.CertificateException {
-            return;
         }
 
         public void checkClientTrusted(java.security.cert.X509Certificate[] certs, String authType)
                 throws java.security.cert.CertificateException {
-            return;
         }
     }
 }

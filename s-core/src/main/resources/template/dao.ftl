@@ -1,6 +1,6 @@
 package ${package}.dao;
 
-import base.pojo.cn.ezeyc.edpbase.DaoBase;
+import cn.ezeyc.edpbase.pojo.base.DaoBase;
 import  ${package}.model.${tableName};
 /**
 * 描述：${remark}

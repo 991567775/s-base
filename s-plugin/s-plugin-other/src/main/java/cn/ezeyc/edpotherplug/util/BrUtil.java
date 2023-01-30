@@ -1,13 +1,13 @@
 package cn.ezeyc.edpotherplug.util;
 
 import cn.ezeyc.edpotherplug.config.BrApp;
-import com.alibaba.fastjson.JSONObject;
 import cn.ezeyc.edpcommon.error.ExRuntimeException;
 import cn.ezeyc.edpcommon.util.AESUtil;
 import cn.ezeyc.edpcommon.util.Http;
 import cn.ezeyc.edpcommon.util.MD5Util;
 import cn.ezeyc.edpcommon.util.Sha256Util;
 import cn.ezeyc.edpotherplug.pojo.BrParam;
+import com.alibaba.fastjson2.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -33,19 +33,15 @@ public class BrUtil {
         reqData.put("name", param.getName());
         String checkCode = getCheckCode(brApp,reqData.toJSONString());
 
-        try {
-            String encryptJsonData= AESUtil.encrypt(URLEncoder.encode(reqData.toJSONString(), StandardCharsets.UTF_8.name()), brApp.getAppKey());
-            JSONObject map=new JSONObject();
-            map.put("appKey",appkey);
-            map.put("apiCode",brApp.getApiCode());
-            map.put("jsonData",encryptJsonData);
-            map.put("checkCode",checkCode);
-            System.out.println(map.toJSONString());
-            String s = Http.sendPost(brApp.getHost() + brApp.getStrategyUrl(), map);
-            return s;
-        } catch (UnsupportedEncodingException e) {
-            throw new ExRuntimeException(e.getMessage());
-        }
+        String encryptJsonData= AESUtil.encrypt(URLEncoder.encode(reqData.toJSONString(), StandardCharsets.UTF_8), brApp.getAppKey());
+        JSONObject map=new JSONObject();
+        map.put("appKey",appkey);
+        map.put("apiCode",brApp.getApiCode());
+        map.put("jsonData",encryptJsonData);
+        map.put("checkCode",checkCode);
+        System.out.println(map.toJSONString());
+        String s = Http.sendPost(brApp.getHost() + brApp.getStrategyUrl(), map);
+        return s;
     }
     private  static String getCheckCode(BrApp brApp,String data){
         String checkCode = "";

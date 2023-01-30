@@ -1,5 +1,5 @@
 package ${package}.service;
-import base.pojo.cn.ezeyc.edpbase.ServiceBase;
+import cn.ezeyc.edpbase.pojo.base.ServiceBase;
 import  ${package}.model.${tableName};
 /**
 * 描述：${remark}

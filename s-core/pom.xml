@@ -10,7 +10,7 @@
     </parent>
     <groupId>cn.ezeyc</groupId>
     <artifactId>s-core</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <name>s-core</name>
     <packaging>jar</packaging>
     <description>框架服务包</description>
@@ -110,6 +110,24 @@
             <artifactId>truelicense-core</artifactId>
             <version>${license.version}</version>
         </dependency>
+        <!--java抽取器,获取注释等信息-->
+        <dependency>
+            <groupId>com.github.shalousun</groupId>
+            <artifactId>qdox</artifactId>
+            <version>${qdox.version}</version>
+        </dependency>
+        <!--自定义doc-->
+        <dependency>
+            <groupId>cn.torna</groupId>
+            <artifactId>torna-sdk</artifactId>
+            <version>${torna.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okio</groupId>
+            <artifactId>okio</artifactId>
+            <version>${okio.version}</version>
+        </dependency>
+
         <!--注册中心客户端-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

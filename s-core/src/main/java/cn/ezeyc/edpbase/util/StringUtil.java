@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -159,11 +160,7 @@ public class StringUtil {
             String[] ids = new String[list.size()];
             for(int i = 0;i<list.size();i++){
                 if(list.get(i)!=null){
-                    try {
-                        ids[i] =  URLDecoder.decode(String.valueOf(list.get(i).toString()),"UTF-8");
-                    } catch (UnsupportedEncodingException e) {
-                        throw new ExRuntimeException(e.getMessage());
-                    }
+                    ids[i] =  URLDecoder.decode(String.valueOf(list.get(i).toString()), StandardCharsets.UTF_8);
                 }
             }
             return ids;
@@ -202,7 +199,7 @@ public class StringUtil {
         if(Character.isLowerCase(s.charAt(0))) {
             return s;
         } else {
-            return (new StringBuilder()).append(Character.toLowerCase(s.charAt(0))).append(s.substring(1)).toString();
+            return Character.toLowerCase(s.charAt(0)) + s.substring(1);
         }
     }
 
@@ -215,14 +212,14 @@ public class StringUtil {
         if(Character.isUpperCase(s.charAt(0))) {
             return s;
         } else {
-            return (new StringBuilder()).append(Character.toUpperCase(s.charAt(0))).append(s.substring(1)).toString();
+            return Character.toUpperCase(s.charAt(0)) + s.substring(1);
         }
     }
 
     /**
      * 下划线转驼峰
      */
-    private static Pattern linePattern = Pattern.compile("_(\\w)");
+    private static final Pattern linePattern = Pattern.compile("_(\\w)");
     public static String lineToHump(String str) {
         str = str.toLowerCase();
         Matcher matcher = linePattern.matcher(str);
@@ -236,7 +233,7 @@ public class StringUtil {
     /**
      * 驼峰转下划线,效率比上面高
      */
-    private static Pattern humpPattern = Pattern.compile("[A-Z]");
+    private static final Pattern humpPattern = Pattern.compile("[A-Z]");
     public static String humpToLine2(String str) {
         Matcher matcher = humpPattern.matcher(str);
         StringBuffer sb = new StringBuffer();
@@ -253,7 +250,7 @@ public class StringUtil {
      * @return
      */
     public static String getFileType(File file) {
-        return file.getName().substring(file.getName().indexOf("."),file.getName().length());
+        return file.getName().substring(file.getName().indexOf("."));
     }
 
     /**
@@ -307,4 +304,18 @@ public class StringUtil {
         return false;
     }
 
+    /**
+     * 删除数组空字符串
+     * @param arr
+     * @return
+     */
+    public  static String [] delEmpty(String [] arr){
+        List<String> values = new ArrayList<String>();
+        for(String ss:arr){
+            if(!"".equals(ss)){
+                values.add(ss);
+            }
+        }
+        return  values.toArray(new String[values.size()]);
+    }
 }

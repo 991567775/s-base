@@ -1,6 +1,7 @@
 package cn.ezeyc.edptxplug.pojo;
 
-import com.alibaba.fastjson.JSONObject;
+
+import com.alibaba.fastjson2.JSONObject;
 
 /**
  * 微信消息推送实体

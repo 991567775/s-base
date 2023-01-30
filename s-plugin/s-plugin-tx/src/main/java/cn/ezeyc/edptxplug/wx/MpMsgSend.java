@@ -1,10 +1,11 @@
 package cn.ezeyc.edptxplug.wx;
 
 import cn.ezeyc.edptxplug.pojo.wxSendMsg;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+
 import cn.ezeyc.edpcommon.util.Http;
 import cn.ezeyc.edptxplug.config.wxMp;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 
 import java.security.MessageDigest;
 import java.util.Map;
@@ -41,7 +42,7 @@ public class MpMsgSend {
         } catch (Exception e) {
         }
         // 将sha1加密后的字符串可与signature对比，标识该请求来源于微信
-        return tmpStr != null ? tmpStr.equals(signature.toUpperCase()) : false;
+        return tmpStr != null && tmpStr.equals(signature.toUpperCase());
     }
 
     /**
@@ -114,7 +115,7 @@ public class MpMsgSend {
         String s = new String(tempArr);
         return s;
     }
-    private static void sort(String a[]) {
+    private static void sort(String[] a) {
         for (int i = 0; i < a.length - 1; i++) {
             for (int j = i + 1; j < a.length; j++) {
                 if (a[j].compareTo(a[i]) < 0) {

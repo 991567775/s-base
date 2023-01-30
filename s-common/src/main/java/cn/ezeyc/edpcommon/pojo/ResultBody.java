@@ -1,8 +1,8 @@
 package cn.ezeyc.edpcommon.pojo;
 
 
-import com.alibaba.fastjson.JSONObject;
 import cn.ezeyc.edpcommon.enums.ResultEnum;
+import com.alibaba.fastjson2.JSONObject;
 
 
 import java.io.Serializable;
@@ -146,7 +146,6 @@ public class ResultBody<T> implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("{code:"+code+",message:'"+message+"',timestamp:"+timestamp+",extra:'"+ JSONObject.toJSONString(extra)+"'}");
-        return sb.toString();
+        return "{code:" + code + ",message:'" + message + "',timestamp:" + timestamp + ",extra:'" + JSONObject.toJSONString(extra) + "'}";
     }
 }

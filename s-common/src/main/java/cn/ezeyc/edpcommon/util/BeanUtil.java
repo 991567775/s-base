@@ -1,11 +1,11 @@
 package cn.ezeyc.edpcommon.util;
 
 import cn.ezeyc.edpcommon.pojo.Page;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 
 import cn.ezeyc.edpcommon.annotation.dao.col;
 import cn.ezeyc.edpcommon.pojo.ModelBase;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
@@ -88,11 +88,8 @@ public class BeanUtil {
      * @return
      */
     public static boolean isBaseType(Class c) {
-        if (c.isPrimitive()||c==String.class || c==Integer.class || c==Byte.class || c==Long.class ||  c==Double.class||
-        c==Float.class || c==Character.class || c==Short.class ||c==Boolean.class) {
-            return true;
-        }
-        return false;
+        return c.isPrimitive() || c == String.class || c == Integer.class || c == Byte.class || c == Long.class || c == Double.class ||
+                c == Float.class || c == Character.class || c == Short.class || c == Boolean.class;
     }
     /**
      * 判断object是否为基本类型
@@ -100,11 +97,8 @@ public class BeanUtil {
      * @return
      */
     public static boolean isBaseType(Type c) {
-        if (c==String.class || c==Integer.class || c==Byte.class || c==Long.class ||  c==Double.class||
-                c==Float.class || c==Character.class || c==Short.class ||c==Boolean.class) {
-            return true;
-        }
-        return false;
+        return c == String.class || c == Integer.class || c == Byte.class || c == Long.class || c == Double.class ||
+                c == Float.class || c == Character.class || c == Short.class || c == Boolean.class;
     }
 
     /**
