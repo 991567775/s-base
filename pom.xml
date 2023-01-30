@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.ezeyc</groupId>
     <artifactId>s-base</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <name>s-base</name>
     <packaging>pom</packaging>
     <description>易择云创快速开发平台</description>
@@ -102,7 +102,6 @@
                 <url>https://ck.ezeyc.cn/repository/mvn/</url>
             </repository>
         </distributionManagement>
-
     <build>
         <plugins>
             <plugin>

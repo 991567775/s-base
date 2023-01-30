@@ -23,7 +23,7 @@
         <dependency>
             <groupId>cn.ezeyc</groupId>
             <artifactId>s-common</artifactId>
-            <version>${parent.version}</version>
+            <version>1.1</version>
         </dependency>
         <!--腾讯云短信-->
         <dependency>
