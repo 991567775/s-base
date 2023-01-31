@@ -14,7 +14,7 @@ import cn.ezeyc.edpcommon.error.ExRuntimeException;
 import cn.ezeyc.edpcommon.pojo.ModelBase;
 import cn.ezeyc.edpcommon.pojo.Page;
 import cn.ezeyc.edpcommon.pojo.ZdConst;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.RequestContext;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.util.WebUtils;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -47,11 +47,11 @@ public class  MethodArgsResolver implements HandlerMethodArgumentResolver {
     /**
      * 范型
      */
-    private static String T="T";
+    private static final String T="T";
     /**
      * 范型
      */
-    private static String Z="Z";
+    private static final String Z="Z";
     @autowired
     private Interceptor interceptor;
     @Override
@@ -60,9 +60,11 @@ public class  MethodArgsResolver implements HandlerMethodArgumentResolver {
     }
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
+
         RequestWrapper request = new RequestWrapper(webRequest.getNativeRequest(HttpServletRequest.class));
+
         if(ZdConst.post.equals(request.getMethod())){
-            if(ServletFileUpload.isMultipartContent(request) ){
+            if( request.getRequest().getClass().getSimpleName().toLowerCase().contains("multipart") ){
                 //multipartRequest附件上传请求
                 MultipartHttpServletRequest multipartRequest =
                         WebUtils.getNativeRequest(request, MultipartHttpServletRequest.class);
@@ -210,8 +212,7 @@ public class  MethodArgsResolver implements HandlerMethodArgumentResolver {
         //对象中list<对象> 解析
         if (f.getType()==List.class) {
             Type t = f.getGenericType();
-            if (t instanceof ParameterizedType) {
-                ParameterizedType pt = (ParameterizedType) t;
+            if (t instanceof ParameterizedType pt) {
                 //得到对象list中实例的类型
                 Class clazz = (Class) pt.getActualTypeArguments()[0];
                 List list = new ArrayList();

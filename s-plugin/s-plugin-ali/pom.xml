@@ -5,12 +5,12 @@
     <parent>
         <groupId>cn.ezeyc</groupId>
         <artifactId>s-plugin</artifactId>
-        <version>1.1</version>
+        <version>2.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>cn.ezeyc</groupId>
     <artifactId>s-plugin-ali</artifactId>
-    <version>1.1</version>
+    <version>2.0</version>
     <name>s-plugin-ali</name>
     <description>s-plugin-ali</description>
     <packaging>jar</packaging>
@@ -22,7 +22,7 @@
         <dependency>
             <groupId>cn.ezeyc</groupId>
             <artifactId>s-common</artifactId>
-            <version>1.1</version>
+            <version>2.0</version>
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>

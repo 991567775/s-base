@@ -15,11 +15,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.lang.reflect.Field;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -152,13 +153,11 @@ public class ExcelUtil {
                             }
                         }else if(!"".equals(annotation.readConverterExp())){
                             String[] split = annotation.readConverterExp().split(",");
-                            if(split.length>0){
-                                for(String s: split){
-                                    String[] v = s.split("=");
-                                    if(v.length>0&&v[0].equals(f.get(o).toString())){
-                                        cell.setCellValue(v[1]);
-                                        break;
-                                    }
+                            for (String s : split) {
+                                String[] v = s.split("=");
+                                if (v.length > 0 && v[0].equals(f.get(o).toString())) {
+                                    cell.setCellValue(v[1]);
+                                    break;
                                 }
                             }
                         }else if(!"".equals(annotation.suffix())){
@@ -239,13 +238,11 @@ public class ExcelUtil {
                                         //转换
                                         }else if(!"".equals(annotation.readConverterExp())){
                                             String[] split = annotation.readConverterExp().split(",");
-                                            if(split.length>0){
-                                                for(String s: split){
-                                                    String[] v = s.split("=");
-                                                    if(v.length>0&&v[1].equals(row.getCell(y).getStringCellValue())){
-                                                        reflect.setNormal(f,f.getType(),entity,v[0]);
-                                                        break;
-                                                    }
+                                            for (String s : split) {
+                                                String[] v = s.split("=");
+                                                if (v.length > 0 && v[1].equals(row.getCell(y).getStringCellValue())) {
+                                                    reflect.setNormal(f, f.getType(), entity, v[0]);
+                                                    break;
                                                 }
                                             }
                                         }else if(!"".equals(annotation.suffix())){
@@ -279,7 +276,7 @@ public class ExcelUtil {
     private static void download(Workbook workbook, HttpServletResponse response, String fileName) throws  IOException {
         ByteArrayOutputStream os=new ByteArrayOutputStream();
         workbook.write(os);
-        response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName,"utf-8"));
+        response.addHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, StandardCharsets.UTF_8));
         response.setContentType("application/octet-stream;charset=UTF-8");
         response.addHeader("Pargam", "no-cache");
         response.addHeader("Cache-Control", "no-cache");
@@ -486,11 +483,7 @@ public class ExcelUtil {
      */
     private static void setResponseHeader(HttpServletResponse response, String fileName) {
         try {
-            try {
-                fileName = new String(fileName.getBytes(),"UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
+            fileName = new String(fileName.getBytes(), StandardCharsets.UTF_8);
             response.setContentType("application/octet-stream;charset=UTF-8");
             response.setHeader("Content-Disposition", "attachment;filename="+ fileName);
             response.addHeader("Pargam", "no-cache");

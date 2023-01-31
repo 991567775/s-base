@@ -15,8 +15,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -29,12 +29,12 @@ import java.util.*;
  */
 @SuppressWarnings("unchecked")
 public class ClientProxyFactory<T> implements FactoryBean<T> {
-    private Logger logger= LoggerFactory.getLogger(ClientProxyFactory.class);
+    private final Logger logger= LoggerFactory.getLogger(ClientProxyFactory.class);
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
     private LoadBalancerClient client;
-    private Class<T> interfaceType;
+    private final Class<T> interfaceType;
     public ClientProxyFactory(Class<T> interfaceType) {
         this.interfaceType = interfaceType;
     }
@@ -48,8 +48,8 @@ public class ClientProxyFactory<T> implements FactoryBean<T> {
         return interfaceType;
     }
      class ClientProxy<T>  implements InvocationHandler {
-        private Class type;
-        private RestTemplate restTemplate;
+        private final Class type;
+        private final RestTemplate restTemplate;
         public ClientProxy(Class type, RestTemplate restTemplate) {
             this.type = type;
             this.restTemplate =restTemplate;

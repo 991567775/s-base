@@ -4,7 +4,7 @@ import org.springframework.core.MethodParameter;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.method.support.ModelAndViewContainer;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 /**
  * ReturnHandler：
  * 请求返回类型设置
@@ -25,12 +25,7 @@ public class ReturnHandler implements HandlerMethodReturnValueHandler {
     @Override
     public boolean supportsReturnType(MethodParameter returnType) {
         //判断类型
-        if("void".equals(returnType.getParameterType().getName())){
-            return false;
-        }else {
-            return  true;
-
-        }
+        return !"void".equals(returnType.getParameterType().getName());
 
     }
 

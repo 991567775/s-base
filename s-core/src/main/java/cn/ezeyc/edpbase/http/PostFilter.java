@@ -4,12 +4,11 @@ package cn.ezeyc.edpbase.http;
 import cn.ezeyc.edpcommon.enums.ResultEnum;
 import cn.ezeyc.edpcommon.pojo.ResultBody;
 import cn.ezeyc.edpcommon.util.Http;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
-import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.*;
+import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -28,19 +27,7 @@ public class PostFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) {
         try {
-            if(ServletFileUpload.isMultipartContent((HttpServletRequest) servletRequest)){
-                filterChain.doFilter(servletRequest, servletResponse);
-            }else{
-                ServletRequest requestWrapper = null;
-                if(servletRequest instanceof HttpServletRequest) {
-                    requestWrapper = new RequestWrapper((HttpServletRequest) servletRequest);
-                }
-                if(requestWrapper == null) {
-                    filterChain.doFilter(servletRequest, servletResponse);
-                } else {
-                    filterChain.doFilter(requestWrapper, servletResponse);
-                }
-            }
+            filterChain.doFilter(servletRequest, servletResponse);
         } catch (IOException e) {
             Http.returnJson((HttpServletResponse) servletResponse,ResultBody.failed(ResultEnum.verify).setMessage(e.getCause().getMessage()));
         } catch (ServletException e) {

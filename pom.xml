@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.ezeyc</groupId>
     <artifactId>s-base</artifactId>
-    <version>1.1</version>
+    <version>2.0</version>
     <name>s-base</name>
     <packaging>pom</packaging>
     <description>易择云创快速开发平台</description>
@@ -15,15 +15,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--base-->
         <pdf.version>2.0.26</pdf.version>
-        <spring-boot.version>2.7.2</spring-boot.version>
-        <spring-could.version>2021.0.3</spring-could.version>
+        <spring-boot.version>3.0.2</spring-boot.version>
+        <spring-could.version>2022.0.1</spring-could.version>
         <hikariCP.version>5.0.1</hikariCP.version>
         <mysql.version>8.0.32</mysql.version>
         <freemarker.version>2.3.32</freemarker.version>
         <log4j2.version>2.18.0</log4j2.version>
         <log4j2.aync.version>3.4.4</log4j2.aync.version>
         <license.version>1.33</license.version>
-        <nacos.version>2021.1</nacos.version>
+        <nacos.version>2022.0.0.0-RC1</nacos.version>
         <jwt.version>4.2.2</jwt.version>
         <oshi.version>6.4.0</oshi.version>
         <redisson.version>3.19.1</redisson.version>

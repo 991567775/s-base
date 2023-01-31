@@ -19,8 +19,8 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +30,7 @@ import java.util.List;
  */
 public class MethodResolver implements HandlerInterceptor {
 
-    private static  int time=60;
+    private static final int time=60;
     @autowired
     private Interceptor interceptor;
     @value("edp.config.ignore")
@@ -39,7 +39,7 @@ public class MethodResolver implements HandlerInterceptor {
     private Boolean security;
     @autowired
     private PasswordEncoder passwordEncoder;
-    private  static  AntPathMatcher antPathMatcher = new AntPathMatcher();
+    private  static final AntPathMatcher antPathMatcher = new AntPathMatcher();
     public MethodResolver(){
     }
     private final Logger logger = LoggerFactory.getLogger(MethodResolver.class);

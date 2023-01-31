@@ -1,4 +1,5 @@
 package cn.ezeyc.edptxplug.msg;
+import cn.ezeyc.edpcommon.annotation.framework.autowired;
 import cn.ezeyc.edpcommon.annotation.framework.configuration;
 import cn.ezeyc.edpcommon.error.ExRuntimeException;
 import cn.ezeyc.edptxplug.config.Msg;
@@ -24,11 +25,11 @@ import java.util.List;
  */
 @configuration
 public class TxMessage {
-    @Autowired
+    @autowired
     private Msg accessKey;
 
     private SmsClient client;
-    private SendSmsRequest req = new SendSmsRequest();
+    private final SendSmsRequest req = new SendSmsRequest();
     private MsgApp app;
     public void  init(){
         Credential cred = new Credential(accessKey.getSecretId(), accessKey.getSecretKey());

@@ -4,10 +4,10 @@ import cn.ezeyc.edpbase.util.StringUtil;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.servlet.ReadListener;
-import javax.servlet.ServletInputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
+import jakarta.servlet.ReadListener;
+import jakarta.servlet.ServletInputStream;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
 import java.io.*;
 
 /**
@@ -32,7 +32,6 @@ public class RequestWrapper extends HttpServletRequestWrapper {
                     stringBuilder.append(charBuffer, 0, bytesRead);
                 }
             } else {
-                stringBuilder.append("");
             }
         } catch (IOException ex) {
 

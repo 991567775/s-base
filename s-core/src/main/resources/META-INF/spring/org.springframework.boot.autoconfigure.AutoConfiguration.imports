@@ -1,0 +1,5 @@
+cn.ezeyc.edpbase.core.starter.RegistryBeanProcessor
+cn.ezeyc.edpbase.core.starter.RegistryFieldProcessor
+cn.ezeyc.edpbase.core.starter.ReturnHandlerProcessor
+cn.ezeyc.edpbase.http.WebConfigFilter
+cn.ezeyc.edpbase.monitor.Monitor
