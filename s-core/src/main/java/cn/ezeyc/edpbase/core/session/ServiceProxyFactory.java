@@ -103,9 +103,8 @@ public class ServiceProxyFactory {
                             if(findAnnotationFromProxy(tx.class, obj, method)) {
                                 transactionManager.closeTx();
                             }
-
+                            return result;
                         }
-                        return result;
                     }
                 });
 
