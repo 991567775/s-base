@@ -4,6 +4,8 @@ package cn.ezeyc.edpbase.core.session;
 
 import cn.ezeyc.edpcommon.annotation.framework.autowired;
 import cn.ezeyc.edpcommon.annotation.framework.configuration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -17,6 +19,7 @@ import java.sql.SQLException;
 
 @configuration
 public class TransactionManager {
+    private final Logger logger= LoggerFactory.getLogger(TransactionManager.class);
     public static ThreadLocal<Connection> localTx = new ThreadLocal<Connection>();
     public static ThreadLocal<Connection> local = new ThreadLocal<Connection>();
     public static ThreadLocal<Boolean> is = new ThreadLocal<Boolean>();
@@ -76,11 +79,7 @@ public class TransactionManager {
     }
     public boolean getTx()  {
         Boolean tx=is.get();
-        if(tx==null||!tx){
-            return false;
-        } else {
-            return true;
-        }
+        return tx != null && tx;
 
     }
 
@@ -111,18 +110,16 @@ public class TransactionManager {
         Connection conn = local.get();
         if (conn != null) {
             conn.close();
-            local.remove();
-        }else{
-
         }
+        local.remove();
     }
 
     public void closeTx() throws SQLException {
         Connection conn=localTx.get();
         if(conn != null){
             conn.close();
-            localTx.remove();
-            is.remove();
         }
+        localTx.remove();
+        is.remove();
     }
 }
