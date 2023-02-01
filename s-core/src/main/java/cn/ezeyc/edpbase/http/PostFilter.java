@@ -30,7 +30,7 @@ public class PostFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) {
         try {
-            if(servletRequest.getContentType().contains("multipart/form-data")){
+            if(servletRequest.getContentType()!=null&&servletRequest.getContentType().contains("multipart/form-data")){
                 filterChain.doFilter(servletRequest, servletResponse);
             }else{
                 ServletRequest requestWrapper = null;
