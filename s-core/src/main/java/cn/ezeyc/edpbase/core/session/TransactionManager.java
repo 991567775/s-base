@@ -56,6 +56,7 @@ public class TransactionManager {
             connection = dataSource.getConnection();
             // 绑定到当前线程
             local.set(connection);
+            logger.info("获取新链接");
         }
         return connection;
     }
