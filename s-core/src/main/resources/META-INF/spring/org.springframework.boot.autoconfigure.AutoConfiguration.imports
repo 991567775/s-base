@@ -1,7 +1,8 @@
 cn.ezeyc.edpbase.core.starter.RegistryBeanProcessor
 cn.ezeyc.edpbase.core.starter.RegistryFieldProcessor
 cn.ezeyc.edpbase.core.starter.ReturnHandlerProcessor
-cn.ezeyc.edpbase.core.session.TransactionUtils
-cn.ezeyc.edpbase.core.session.CustomTransactionAspect
+cn.ezeyc.edpbase.core.session.TransactionAop
+cn.ezeyc.edpbase.core.session.CacheAop
+cn.ezeyc.edpbase.core.session.CleanCacheAop
 cn.ezeyc.edpbase.http.WebConfigFilter
 cn.ezeyc.edpbase.monitor.Monitor

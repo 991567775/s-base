@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+import javax.sql.DataSource;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -25,18 +26,20 @@ import java.util.stream.Collectors;
  * 事务处理封装
  * 代理对象工厂
  * @author wz
+ * @deprecated 基本废弃。使用后数据库连接线程有问题
  */
 @configuration
 public class ServiceProxyFactory {
     private final Logger logger=  LoggerFactory.getLogger(ServiceProxyFactory.class);
 
-    @autowired
-    private TransactionManager transactionManager;
+//    @autowired
+//    private TransactionManager transactionManager;
     @autowired
     private RedisUtil redisUtil;
     @value("edp.config.cache")
     private Boolean cache;
-
+    @autowired
+    private DataSource dataSource;
     /**
      * Jdk动态代理
      * @param obj  委托对象
@@ -50,6 +53,8 @@ public class ServiceProxyFactory {
                     @Override
                     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                         Object result = null;
+                        //开启事务
+                        TransactionManager transactionManager = new TransactionManager(dataSource);
                         try{
                             boolean isCache= (cache==null|| cache)  &&findAnnotationFromProxy(cache.class,obj,method);
                             boolean isClearCache= (cache==null|| cache)  &&findAnnotationFromProxy(clearCache.class,obj,method);
