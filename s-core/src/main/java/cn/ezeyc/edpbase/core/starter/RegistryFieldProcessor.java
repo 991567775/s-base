@@ -1,6 +1,8 @@
 package cn.ezeyc.edpbase.core.starter;
 
 import cn.ezeyc.edpbase.core.client.ClientRequest;
+import cn.ezeyc.edpbase.core.dao.DaoProxy;
+import cn.ezeyc.edpbase.core.dao.SessionFactory;
 import cn.ezeyc.edpbase.core.session.ControlFactory;
 import cn.ezeyc.edpbase.core.session.ServiceProxyFactory;
 import com.alibaba.fastjson.JSON;
@@ -36,10 +38,7 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import javax.sql.DataSource;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.lang.reflect.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -283,7 +282,7 @@ public class RegistryFieldProcessor implements BeanPostProcessor, EnvironmentAwa
         if(f.getType()== DataSource.class&&environment.getProperty("edp.db.url")==null){
             return;
         }
-        if(f.getType().getSimpleName().endsWith(ZdConst.end_with_Dao)||f.getType().getSimpleName().endsWith(ZdConst.client)){
+        if(f.getType().getSimpleName().endsWith(ZdConst.client)||f.getType().getSimpleName().endsWith(ZdConst.end_with_Dao)){
             //dao 服务注入
             f.setAccessible(true);
             f.set(bean,applicationContext.getBean(f.getType()));
@@ -291,7 +290,7 @@ public class RegistryFieldProcessor implements BeanPostProcessor, EnvironmentAwa
                 &&f.getType().isInterface()){
             //service注入
             f.setAccessible(true);
-            interfaceAutowired(f,bean,true);
+            interfaceAutowired(f,bean,false);
         }
         else{
             //普通注入
@@ -323,7 +322,7 @@ public class RegistryFieldProcessor implements BeanPostProcessor, EnvironmentAwa
                 if(isProxy){
                     f.set(bean,applicationContext.getBean(ServiceProxyFactory.class).getJdkProxy(o));
                 }else{
-                    f.set(f,o);
+                    f.set(bean,o);
                 }
             }else if(count.size()>1){
                 if(f.getAnnotation(autowired.class).value()!=Exception.class){

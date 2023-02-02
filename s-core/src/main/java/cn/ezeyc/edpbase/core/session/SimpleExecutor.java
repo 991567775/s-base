@@ -1,5 +1,6 @@
 package cn.ezeyc.edpbase.core.session;
 
+import cn.ezeyc.edpcommon.annotation.framework.autowired;
 import cn.ezeyc.edpcommon.annotation.framework.configuration;
 import cn.ezeyc.edpcommon.annotation.framework.value;
 import cn.ezeyc.edpbase.constant.SqlConst;
@@ -15,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,11 +29,14 @@ import java.util.List;
  */
 @configuration
 public class SimpleExecutor implements Executor {
-    private Logger logger= LoggerFactory.getLogger(SimpleExecutor.class);
-    @Autowired
-    private  TransactionManager transactionManager;
+    private final Logger logger= LoggerFactory.getLogger(SimpleExecutor.class);
+//    @Autowired
+//    private  TransactionManager transactionManager;
+
     @Autowired
     private  SetResult setResult;
+    @autowired
+    private DataSource dataSource;
 
     @value("edp.db.showSql")
     private Boolean showSql;
@@ -41,6 +46,7 @@ public class SimpleExecutor implements Executor {
         PreparedStatement preparedStatement=null;
          ResultSet resultSet=null;
         Connection        currentThreadConn=null;
+        TransactionManager transactionManager = new TransactionManager(dataSource);
         try {
             if(transactionManager.getTx()){
                 currentThreadConn = transactionManager.transaction();
@@ -122,6 +128,7 @@ public class SimpleExecutor implements Executor {
     public Object doSqlBatch(List<SqlParam> list, Class model) throws SQLException {
         PreparedStatement preparedStatement=null;
         Connection        currentThreadConn=null;
+        TransactionManager transactionManager = new TransactionManager(dataSource);
         try {
             if(transactionManager.getTx()){
                 currentThreadConn = transactionManager.transaction();
@@ -180,6 +187,7 @@ public class SimpleExecutor implements Executor {
         PreparedStatement preparedStatement=null;
         ResultSet resultSet=null;
         Connection        currentThreadConn=null;
+        TransactionManager transactionManager = new TransactionManager(dataSource);
         try  {
             if(transactionManager.getTx()){
                 currentThreadConn = transactionManager.transaction();
@@ -228,6 +236,7 @@ public class SimpleExecutor implements Executor {
     public void executeSql(String sql, List<Object> params) throws SQLException {
         PreparedStatement preparedStatement=null;
         Connection        currentThreadConn=null;
+        TransactionManager transactionManager = new TransactionManager(dataSource);
         try  {
             if(transactionManager.getTx()){
                 currentThreadConn = transactionManager.transaction();
@@ -263,6 +272,7 @@ public class SimpleExecutor implements Executor {
     public void executeSql(String sql) throws SQLException {
         PreparedStatement preparedStatement=null;
         Connection        currentThreadConn=null;
+        TransactionManager transactionManager = new TransactionManager(dataSource);
         try  {
             if(transactionManager.getTx()){
                 currentThreadConn = transactionManager.transaction();

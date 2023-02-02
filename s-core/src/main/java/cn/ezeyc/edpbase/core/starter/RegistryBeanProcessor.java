@@ -28,6 +28,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.StringUtils;
@@ -78,7 +79,8 @@ public class RegistryBeanProcessor implements BeanDefinitionRegistryPostProcesso
             e.printStackTrace();
         }
         return configPojo;
-    };
+    }
+
     /**
      * 负载均衡
      * @return

@@ -23,8 +23,14 @@ public class TransactionManager {
     public static ThreadLocal<Connection> localTx = new ThreadLocal<Connection>();
     public static ThreadLocal<Connection> local = new ThreadLocal<Connection>();
     public static ThreadLocal<Boolean> is = new ThreadLocal<Boolean>();
-    @autowired
     private DataSource dataSource;
+    public TransactionManager() {
+    }
+
+    public TransactionManager(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
     /**
      * 事务连接
      */
