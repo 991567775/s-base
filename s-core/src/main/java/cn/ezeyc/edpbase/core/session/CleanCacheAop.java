@@ -3,11 +3,14 @@ package cn.ezeyc.edpbase.core.session;
 import cn.ezeyc.edpbase.util.RedisUtil;
 import cn.ezeyc.edpcommon.annotation.dao.clearCache;
 import cn.ezeyc.edpcommon.annotation.framework.autowired;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -15,6 +18,7 @@ import java.lang.reflect.Method;
 
 @Aspect
 @Component
+@Order(1)
 public class CleanCacheAop {
 
 
@@ -28,13 +32,8 @@ public class CleanCacheAop {
     public void CleanCachePointCut() {
 
     }
-
-    /**
-     * 方法增强@Arounbd
-     * @param point
-     */
-    @Around("CleanCachePointCut()")
-    public void around(ProceedingJoinPoint point) throws Throwable {
+    @Before("CleanCachePointCut()")
+    public void before(JoinPoint point) throws Throwable {
         //删除当前对应表
         String simpleName = point.getTarget().getClass().getSimpleName();
         redisUtil.delBySuffix(simpleName);
@@ -53,8 +52,5 @@ public class CleanCacheAop {
         for(String c:values){
             redisUtil.delBySuffix(c);
         }
-
-        Object result = point.proceed();
     }
-
 }
